@@ -1,17 +1,20 @@
-# tugaspbmprak
+# RADMART - Katalog Produk & Submit Tugas
 
-A new Flutter project.
+RADMART adalah aplikasi katalog produk berbasis Flutter yang dirancang untuk memudahkan manajemen produk dan pengumpulan tugas praktikum Pemrograman Bergerak (PBM). Aplikasi ini mengusung desain minimalis dan fokus pada efisiensi navigasi pengguna.
 
-## Getting Started
+## Fitur Utama
+- **Autentikasi**: Sistem login aman menggunakan kredensial mahasiswa (NIM).
+- **Katalog Produk**: Menampilkan daftar produk yang telah ditambahkan dengan informasi harga dan deskripsi.
+- **Tambah Produk**: Antarmuka intuitif untuk memasukkan data produk baru ke dalam sistem.
+- **Submit Tugas**: Fitur khusus untuk melaporkan hasil pekerjaan praktikum melalui tautan repositori GitHub.
 
-This project is a starting point for a Flutter application.
+## Dokumentasi Aplikasi (Screenshots)
 
-A few resources to get you started if this is your first Flutter project:
+| Bagian Aplikasi | Preview |
+| --- | --- |
+| **Tampilan Login** | ![Login](path/to/screenshot_login.png) |
+| **Fitur Utama (Katalog)** | ![Fitur Utama](path/to/screenshot_home.png) |
+| **Pop Up (Dialog)** | ![Pop Up](path/to/screenshot_popup.png) |
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+*Dibuat untuk memenuhi Tugas Praktikum Pemrograman Bergerak (PBM)*

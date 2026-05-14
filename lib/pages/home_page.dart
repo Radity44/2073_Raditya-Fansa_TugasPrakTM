@@ -39,7 +39,9 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: isError ? Colors.red.shade700 : Colors.green.shade700,
+        backgroundColor: isError
+            ? Colors.red.shade600
+            : const Color(0xFF6366F1),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
@@ -50,37 +52,44 @@ class _HomePageState extends State<HomePage> {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF1E293B),
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text('Hapus Produk',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Hapus Produk',
+          style: TextStyle(
+            color: Color(0xFF111827),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         content: Text(
           'Apakah kamu yakin ingin menghapus "${product.name}"?',
-          style: const TextStyle(color: Colors.white70),
+          style: const TextStyle(color: Color(0xFF6B7280)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Batal',
-                style: TextStyle(color: Colors.white54)),
+            child: const Text(
+              'Batal',
+              style: TextStyle(color: Color(0xFF9CA3AF)),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red.shade700,
+              backgroundColor: Colors.red.shade500,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              elevation: 0,
             ),
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Hapus',
-                style: TextStyle(color: Colors.white)),
+            child: const Text('Hapus', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
     );
 
     if (confirm == true) {
-      final result =
-          await ApiService.deleteProduk(widget.token, product.id);
+      final result = await ApiService.deleteProduk(widget.token, product.id);
       if (result['success']) {
         _showSnackBar('Produk berhasil dihapus');
         _loadProducts();
@@ -94,23 +103,34 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF1E293B),
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text('Logout',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        content: const Text('Apakah kamu yakin ingin logout?',
-            style: TextStyle(color: Colors.white70)),
+        title: const Text(
+          'Logout',
+          style: TextStyle(
+            color: Color(0xFF111827),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: const Text(
+          'Apakah kamu yakin ingin logout?',
+          style: TextStyle(color: Color(0xFF6B7280)),
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Batal',
-                style: TextStyle(color: Colors.white54)),
+            child: const Text(
+              'Batal',
+              style: TextStyle(color: Color(0xFF9CA3AF)),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF6366F1),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              elevation: 0,
             ),
             onPressed: () {
               Navigator.pop(ctx);
@@ -119,8 +139,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (_) => const LoginPage()),
               );
             },
-            child: const Text('Logout',
-                style: TextStyle(color: Colors.white)),
+            child: const Text('Logout', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -131,24 +150,26 @@ class _HomePageState extends State<HomePage> {
     final formatted = price
         .toStringAsFixed(0)
         .replaceAllMapped(
-            RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-            (m) => '${m[1]}.');
+          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (m) => '${m[1]}.',
+        );
     return 'Rp $formatted';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: const Color(0xFFF1F5F9),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1E293B),
+        backgroundColor: const Color(0xFF6366F1),
         elevation: 0,
         title: const Text(
           'Katalog Produk',
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 18),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
         actions: [
           IconButton(
@@ -156,15 +177,16 @@ class _HomePageState extends State<HomePage> {
               await Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => SubmitPage(token: widget.token)),
+                  builder: (_) => SubmitPage(token: widget.token),
+                ),
               );
             },
-            icon: const Icon(Icons.upload_rounded, color: Color(0xFF6366F1)),
+            icon: const Icon(Icons.upload_rounded, color: Colors.white),
             tooltip: 'Submit Tugas',
           ),
           IconButton(
             onPressed: _logout,
-            icon: const Icon(Icons.logout_rounded, color: Colors.white54),
+            icon: const Icon(Icons.logout_rounded, color: Colors.white),
             tooltip: 'Logout',
           ),
         ],
@@ -174,29 +196,73 @@ class _HomePageState extends State<HomePage> {
           final added = await Navigator.push<bool>(
             context,
             MaterialPageRoute(
-                builder: (_) => TambahProdukPage(token: widget.token)),
+              builder: (_) => TambahProdukPage(token: widget.token),
+            ),
           );
           if (added == true) _loadProducts();
         },
         backgroundColor: const Color(0xFF6366F1),
         icon: const Icon(Icons.add, color: Colors.white),
-        label: const Text('Tambah Produk',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
+        label: const Text(
+          'Tambah Produk',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
       ),
       body: _isLoading
           ? const Center(
-              child: CircularProgressIndicator(color: Color(0xFF6366F1)))
-          : _products.isEmpty
-              ? _buildEmpty()
-              : RefreshIndicator(
-                  onRefresh: _loadProducts,
-                  color: const Color(0xFF6366F1),
-                  child: ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 90),
-                    itemCount: _products.length,
-                    itemBuilder: (_, i) => _buildCard(_products[i]),
+              child: CircularProgressIndicator(color: Color(0xFF6366F1)),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Halo, Radit',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF111827),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Ini Adalah Tugas PBM!',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade600,
+                        ),
+                      ),
+                      const SizedBox(height: 28),
+                      const Text(
+                        'List Produk',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF374151),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                Expanded(
+                  child: _products.isEmpty
+                      ? _buildEmpty()
+                      : RefreshIndicator(
+                          onRefresh: _loadProducts,
+                          color: const Color(0xFF6366F1),
+                          child: ListView.builder(
+                            padding: const EdgeInsets.fromLTRB(16, 12, 16, 90),
+                            itemCount: _products.length,
+                            itemBuilder: (_, i) => _buildCard(_products[i]),
+                          ),
+                        ),
+                ),
+              ],
+            ),
     );
   }
 
@@ -205,21 +271,20 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.inbox_rounded,
-              size: 72, color: Colors.white.withOpacity(0.15)),
+          Icon(Icons.inbox_rounded, size: 72, color: Colors.grey.shade300),
           const SizedBox(height: 16),
           Text(
             'Belum ada produk',
             style: TextStyle(
-                color: Colors.white.withOpacity(0.4),
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
+              color: Colors.grey.shade500,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(height: 6),
           Text(
             'Tambahkan produk pertamamu!',
-            style: TextStyle(
-                color: Colors.white.withOpacity(0.25), fontSize: 13),
+            style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
           ),
         ],
       ),
@@ -230,27 +295,21 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border:
-            Border.all(color: Colors.white.withOpacity(0.07), width: 1),
+        border: Border.all(color: Colors.grey.shade100),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            // Icon box
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: const Color(0xFF6366F1).withOpacity(0.15),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(Icons.inventory_2_rounded,
-                  color: Color(0xFF6366F1), size: 26),
-            ),
-            const SizedBox(width: 14),
             // Info
             Expanded(
               child: Column(
@@ -259,9 +318,10 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     product.name,
                     style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600),
+                      color: Color(0xFF111827),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -269,17 +329,19 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     _formatPrice(product.price),
                     style: const TextStyle(
-                        color: Color(0xFF6366F1),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
+                      color: Color(0xFF6366F1),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   if (product.description.isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text(
                       product.description,
                       style: TextStyle(
-                          color: Colors.white.withOpacity(0.45),
-                          fontSize: 12),
+                        color: Colors.grey.shade500,
+                        fontSize: 12,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -290,8 +352,11 @@ class _HomePageState extends State<HomePage> {
             // Delete button
             IconButton(
               onPressed: () => _confirmDelete(product),
-              icon: Icon(Icons.delete_outline_rounded,
-                  color: Colors.red.shade400, size: 22),
+              icon: Icon(
+                Icons.delete_outline_rounded,
+                color: Colors.red.shade400,
+                size: 22,
+              ),
             ),
           ],
         ),
