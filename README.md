@@ -1,27 +1,9 @@
-# 🛒 RADMART - Katalog Produk & Submit Tugas
-
-**RADMART** adalah aplikasi katalog produk berbasis **Flutter** yang dirancang untuk memudahkan pengelolaan produk sekaligus pengumpulan tugas praktikum **Pemrograman Bergerak (PBM)**.  
-Aplikasi ini mengusung desain minimalis dengan navigasi yang sederhana, sehingga pengguna dapat mengakses fitur dengan cepat dan efisien.
-
-## ✨ Fitur Utama
-
-- 🔐 **Autentikasi Login**  
-  Sistem login menggunakan kredensial mahasiswa (**NIM**) untuk memastikan akses pengguna yang aman.
-
-- 📦 **Katalog Produk**  
-  Menampilkan daftar produk lengkap beserta informasi **nama produk, harga, dan deskripsi**.
-
-- ➕ **Tambah Produk**  
-  Form input produk yang mudah digunakan untuk menambahkan data baru ke katalog.
-
-- 📤 **Submit Tugas**  
-  Fitur khusus untuk mengirim hasil praktikum melalui tautan repositori **GitHub**.
-
+#  RADMART - Katalog Produk & Submit Tugas
 ---
 
-## 📸 Dokumentasi Aplikasi
+##  Dokumentasi Aplikasi
 
-### 🔑 Tampilan Login
+###  Tampilan Login
 
 | Preview |
 |--------|
@@ -29,7 +11,7 @@ Aplikasi ini mengusung desain minimalis dengan navigasi yang sederhana, sehingga
 
 ---
 
-### 🏠 Fitur Utama (Katalog Produk)
+###  Fitur Utama (Katalog Produk)
 
 | Preview |
 |--------|
@@ -37,14 +19,10 @@ Aplikasi ini mengusung desain minimalis dengan navigasi yang sederhana, sehingga
 
 ---
 
-### 💬 Pop Up / Dialog
+###  Pop Up / Dialog
 
 | Preview |
 |--------|
 | <img width="275" height="616" alt="Dialog 1" src="https://github.com/user-attachments/assets/e6de1519-4a76-4573-ae05-5eabe5165819" /> <img width="275" height="617" alt="Dialog 2" src="https://github.com/user-attachments/assets/dcfc79ac-839f-4ff9-8714-c2b6a840e65d" /> <img width="277" height="617" alt="Dialog 3" src="https://github.com/user-attachments/assets/a94d9703-7ad7-452b-b944-dce50f75a70b" /> <img width="278" height="617" alt="Dialog 4" src="https://github.com/user-attachments/assets/741a9cfd-57c0-43d8-bafe-bc2e92df0685" /> |
 
 ---
-
-## 📝 Catatan
-
-Aplikasi ini dibuat sebagai bagian dari pemenuhan **Tugas Praktikum Pemrograman Bergerak (PBM)**.
